@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de tarefas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <main class="app">
+        <h1>Lista de tarefas</h1>
+
+        <!-- O <form> faz o Enter também adicionar a tarefa, além do clique no botão -->
+        <form id="form-tarefa" class="nova-tarefa">
+            <label for="input-tarefa" class="sr-only">Nova tarefa</label>
+            <input type="text" id="input-tarefa" placeholder="O que você precisa fazer?" autocomplete="off" maxlength="120">
+            <button type="submit" id="btn-adicionar">Adicionar</button>
+        </form>
+
+        <p id="mensagem" class="mensagem" aria-live="polite"></p>
+
+        <!-- Lista começa vazia. Sem espaços dentro para o :empty do CSS funcionar -->
+        <ul id="lista-tarefas" class="lista"></ul>
+
+        <p class="dica">Marque a caixa para concluir. Clique no texto da tarefa para removê-la.</p>
+    </main>
+
+    <!-- Script no fim do body: o HTML já existe quando o JS roda -->
+    <script src="js/script.js"></script>
+</body>
+</html>

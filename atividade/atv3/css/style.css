@@ -1,0 +1,184 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --ink: #1b2a41;
+    --paper: #f4f6f8;
+    --surface: #ffffff;
+    --accent: #c74634;
+    --muted: #5b6b7b;
+    --rule: #d6dde4;
+    --done: #2f7d5b;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 3rem 1rem;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background-color: var(--paper);
+}
+
+.app {
+    width: 100%;
+    max-width: 520px;
+    padding: 1.75rem;
+    background-color: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--accent);
+}
+
+h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Esconde o label visualmente, mas leitores de tela continuam lendo */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ---------- Formulário ---------- */
+.nova-tarefa {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nova-tarefa input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.7rem 0.8rem;
+    font: inherit;
+    border: 1px solid #b3c0cc;
+    border-radius: 4px;
+    background-color: var(--paper);
+}
+
+.nova-tarefa button {
+    padding: 0.7rem 1.1rem;
+    font: inherit;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: var(--accent);
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.nova-tarefa button:hover {
+    background-color: #a93a2b;
+}
+
+input:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.mensagem {
+    min-height: 1.4rem;
+    margin-top: 0.4rem;
+    font-size: 0.875rem;
+    color: var(--accent);
+}
+
+/* ---------- Lista ---------- */
+.lista {
+    list-style: none;
+    border-top: 1px solid var(--rule);
+}
+
+/* Mensagem quando a lista está vazia (só CSS, sem JS) */
+.lista:empty::before {
+    content: "Nenhuma tarefa por enquanto.";
+    display: block;
+    padding: 1.5rem 0;
+    text-align: center;
+    color: var(--muted);
+}
+
+.lista li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 0.25rem;
+    border-bottom: 1px solid var(--rule);
+    cursor: pointer;
+}
+
+/* Mostra que clicar vai remover */
+.lista li:hover {
+    background-color: #fbeeec;
+}
+
+.lista li:hover .texto {
+    color: var(--accent);
+}
+
+.lista li::after {
+    content: "×";
+    margin-left: auto;
+    font-size: 1.2rem;
+    color: var(--muted);
+    opacity: 0;
+}
+
+.lista li:hover::after {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.check {
+    display: flex;
+}
+
+.check input {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--done);
+    cursor: pointer;
+}
+
+.texto {
+    word-break: break-word;
+}
+
+/* Tarefa concluída (classe colocada pelo JS) */
+.lista li.concluida .texto {
+    text-decoration: line-through;
+    color: var(--muted);
+}
+
+.dica {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 420px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+
+    .app {
+        padding: 1.25rem;
+    }
+
+    .nova-tarefa {
+        flex-direction: column;
+    }
+}
